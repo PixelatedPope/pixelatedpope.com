@@ -2,6 +2,8 @@
 
 source "https://rubygems.org"
 
-# gem "rails"
-gem "github-pages", "~> 227", group: :jekyll_plugins
+gemspec
+gem 'tzinfo', '1.2.3'
+gem 'tzinfo-data', '1.2017.2'
+
 gem "webrick", "~> 1.7"
