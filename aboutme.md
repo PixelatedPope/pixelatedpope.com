@@ -1,16 +1,13 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
+subtitle: Who is Pixelated Pope?
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+<img src="/assets/img/pope.gif" class="mx-auto d-block pixelated" height="256px"/>
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+My name is Jonathan Peterson. I've been using GameMaker since 2009 starting with GM7. 
 
-What else do you need?
+Rather than actually building games, I found it more fun to help others build their games. I accomplished this by creating written tutorials on Reddit, video tutorials on Youtube, releasing useful tools and systems on the Yoyo Marketplace and Itch.io, and helping people live through Discord.
 
-### My story
-
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+With the launch of this website I hope to have a central location to find all of the GameMaker content I produce!  Thanks for being here 😎

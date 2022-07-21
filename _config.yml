@@ -21,10 +21,9 @@ author: Jonathan Peterson
 
 navbar-links:
   About Me: "aboutme"
-  Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "https://deanattali.com"
+  Assets:
+    - Itch.io: "https://pixelatedpope.itch.io/"
+    - Yoyo Marketplace: "https://marketplace.yoyogames.com/publishers/813/pixelated-pope"
 
 ################
 # --- Logo --- #
