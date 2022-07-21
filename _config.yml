@@ -51,8 +51,9 @@ round-avatar: true
 social-network-links:
   email: "pixelatedpope@gmail.com"
   github: pixelatedpope
-  twitter: pixelatedpope
+  twitter: Pixelated_Pope
   youtube: c/PixelatedPope
+  itch: pixelatedpope
 #  medium: yourname
 #  reddit: yourname
   #linkedin: daattali
@@ -70,7 +71,7 @@ social-network-links:
 #  mastodon: instance.url/@username
 #  ORCID: your ORCID ID
 #  google-scholar: your google scholar
-  discord:  
+  discord: gamemaker
 #  kaggle: yourname
 #  hackerrank: yourname
 
@@ -85,13 +86,13 @@ rss-description: This website is a virtual proof that I'm awesome
 # Select which social network share links to show in posts
 share-links-active:
   twitter: true
-  facebook: true
-  linkedin: true
+  facebook: false
+  linkedin: false
   vk: false
 
 # How to display the link to your website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "MyWebsite.com"
+url-pretty: "www.pixelatedpope.com"
 
 # Excerpt word length - Truncate the excerpt of each post on the feed page to the specified number of words
 excerpt_length: 50
@@ -122,17 +123,17 @@ navbar-var-length: false
 
 # Personalize the colours in your website. Colour values can be any valid CSS colour
 
-navbar-col: "#EAEAEA"
-navbar-text-col: "#404040"
-navbar-border-col: "#DDDDDD"
-page-col: "#FFFFFF"
-text-col: "#404040"
-link-col: "#008AFF"
-hover-col: "#0085A1"
-footer-col: "#EAEAEA"
-footer-text-col: "#777777"
-footer-link-col: "#404040"
-footer-hover-col: "#0085A1"
+navbar-col: "#656565"
+navbar-text-col: "#478817"
+navbar-border-col: "#292e29"
+page-col: "#161616"
+text-col: "#FFFFFF"
+link-col: "#b7d15d"
+hover-col: "#cdd15d"
+footer-col: "#656565"
+footer-text-col: "#b7d15d"
+footer-link-col: "#478817"
+footer-hover-col: "#cdd15d"
 
 # Alternatively, the navbar, footer, and page background can be set to an image
 # instead of colour
@@ -286,6 +287,3 @@ plugins:
 
 # Beautiful Jekyll / Dean Attali
 # 2fc73a3a967e97599c9763d05e564189
-
-
-theme: jekyll-theme-slate
