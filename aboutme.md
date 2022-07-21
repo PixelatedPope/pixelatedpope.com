@@ -4,7 +4,7 @@ title: About me
 subtitle: Who is Pixelated Pope?
 ---
 
-<img src="/assets/img/pope.gif" class="mx-auto d-block pixelated" height="256px"/>
+<img src="/assets/img/Pope.gif" class="mx-auto d-block pixelated" height="256px"/>
 
 My name is Jonathan Peterson. I've been using GameMaker since 2009 starting with GM7. 
 
