@@ -6,8 +6,8 @@ class DemoContainer extends HTMLElement {
 
     const frame = document.createElement('iframe');
 
-    frame.setAttribute('width', this.hasAttribute('width') ? this.getAttribute('width') : "100%")
-    frame.setAttribute('height', this.hasAttribute('height') ? this.getAttribute('height') : "100%")
+    frame.setAttribute('width', this.hasAttribute('width') ? this.getAttribute('width') : "100px")
+    frame.setAttribute('height', this.hasAttribute('height') ? this.getAttribute('height') : "100px")
     frame.setAttribute('src', this.hasAttribute('src') ? this.getAttribute('src') : "100px")
 
     frame.setAttribute('allowfullscreen', "true");
