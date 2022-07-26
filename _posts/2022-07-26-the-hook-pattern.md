@@ -85,7 +85,7 @@ You’d need some way to “start” a flash. Something like <span class="functi
 
 Then we’d need some way to draw the flashed version of the sprite. A <span class="function">draw_flash</span>() function that we can overlay on our default drawing.
 
-Finally we’d need to make sure that we had all the variables responsible for controlling the drawing and the animation were available to us. The color, the current alpha, the timer remaining on the flash, etc.
+Finally we’d need to make sure that we had all the variables responsible for controlling the drawing and the animation available to us. The color, the current alpha, the timer remaining on the flash, etc.
 
 Open the create event of our object so we block out a struct that has a place for all of that.
 
@@ -99,7 +99,8 @@ flash = {
 }
 {% endhighlight %}
 
-Notice that I stored the struct in a variable I called <span class="variable">flash</span>. It’s important to keep this in mind when naming properties and functions in your hook. We don’t want to call our color property <span class="variable">flashColor</span> or our start function <span class="function">flashStart</span>. We’ll already be using the <span class="variable">flash</span> variable when we access them. It would be redundant if we had to type flash again like this: <span class="variable">flash.flashColor</span>. Keep your names in the context of a single flash.
+{: .box-note}
+**NOTE:** Notice that I stored the struct in a variable I called <span class="variable">flash</span>. It’s important to keep this in mind when naming properties and functions in your hook. We don’t want to call our color property <span class="variable">flashColor</span> or our start function <span class="function">flashStart</span>. We’ll already be using the <span class="variable">flash</span> variable when we access them. It would be redundant if we had to type flash again like this: <span class="variable">flash.flashColor</span>. Keep your names in the context of a single flash instance.
 
 Being able to “start” a flash doesn’t matter if we can’t see it. Let’s build the draw function first.
 
@@ -183,7 +184,7 @@ While we are here, let’s set the default <span class="variable">alpha</span> t
 
 ![a flashy sprite](/assets/img/hooks/flash2.gif){: .mx-auto.d-block :}
 
-There we go! Now every time you press spacebar, your character will flash white! Try passing in a different length of time when you call start()!
+There we go! Now every time you press spacebar, your character will flash white! Try passing in a different length of time when you call <span class="variable">start</span>()!
 
 Let’s make this just a bit cooler. Let’s allow you to pass a color into <span class="variable">start</span> to change the color of the flash.
 
@@ -210,7 +211,7 @@ Spam that spacebar and enjoy the show!
 
 ### Creating your Hook
 
-We’ve created this handy struct, but it still belongs solely to this one object. To make this a true “hook” we need to make it reusable. Now that you’ve already built it in this manner, this is SUPER easy. 
+We’ve created this handy struct, but it still belongs solely to this one object. To make this a "true hook” we need to make it reusable. Now that you’ve already built it in this manner, this is SUPER easy. 
 
 Go to your create event, cut it, and just build a new function that returns this structure.
 
@@ -237,7 +238,7 @@ function use_flash(){
 }
 {% endhighlight %}
 {: .box-note}
-**Why “use_”?** This is a naming convention established back in ReactJS. All hooks are named with the use prefix. I like the convention, so I stuck with it. You can name yours whatever you want, obviously.
+**Why “use_”?** This is a naming convention established back in ReactJS. All hooks are named with the "use_" prefix. I like the convention, so I stuck with it. You can name yours whatever you want, obviously.
 
 Back in our create event, we just call this function and store the return in our <span class="variable">flash</span> variable.
 
