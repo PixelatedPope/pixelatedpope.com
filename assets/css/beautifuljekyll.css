@@ -9,6 +9,26 @@ layout: null
   image-rendering: pixelated;
 }
 
+.function {
+  color: #FFB871;
+  font-family: consolas;
+}
+
+.builtin {
+  color: #58E55A;
+  font-family: consolas;
+}
+
+.variable {
+  color: #9A99DA;
+  font-family: consolas;
+}
+
+.asset {
+  color: #FF8080;
+  font-family: consolas;
+}
+
 /* --- General --- */
 
 html {
