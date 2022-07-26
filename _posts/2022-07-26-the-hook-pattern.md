@@ -57,6 +57,9 @@ Before React implemented hooks, they had a similar problem: components could con
 
 With hooks, any child could simply say “hey, I need this” in its definition and it didn’t matter who was above or below them; they just had access to it to use as they saw fit. With structs and functions we can do something similar.
 
+{: .box-note}
+**Component Pattern** The hook pattern is really just an implementation of the component pattern. [Read about it here.](https://gameprogrammingpatterns.com/component.html)
+
 The pattern itself is pretty simple: build a struct that holds all of the properties and functions needed for a specific feature or function. Build a function or constructor that creates an instance of that struct for an object. Use that struct throughout the object’s various events to gain access to the same functionality and necessary properties.
 
 Now you can mix and match as many different features for any object in your project.
