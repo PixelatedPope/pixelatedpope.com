@@ -127,7 +127,7 @@ Run the game.
 
 Uh oh. What happened? Why didn’t this work?
 
-This function is defined within the context of our flash struct. The flash struct doesn’t have a <span class="builtin">sprite_index</span>, <span class="builtin">image_xscale</span>, <span class="builtin">image_blend</span>, or any of the other “built in” instance variables we know and love. So we need to draw this sprite in another context. To do that, we’ll just use <span class="function">with</span>(<span class="asset">other</span>) before we draw the sprite. This will draw the sprite using all the variables that the object calling <span class="variable">flash.draw</span>().
+This function is defined within the context of our flash struct. The flash struct doesn’t have a <span class="builtin">sprite_index</span>, <span class="builtin">image_xscale</span>, <span class="builtin">image_blend</span>, or any of the other “built in” instance variables we know and love. So we need to draw this sprite in another context. To do that, we’ll just use <span class="function">with</span>(<span class="asset">other</span>) before we draw the sprite. This will draw the sprite using all the variables that the object calling <span class="variable">flash.draw</span>() has access to.
 That causes one further issue: our <span class="asset">other</span> object doesn’t know what <span class="variable">alpha</span> is; that’s a property defined as part of our struct. So we need to use <span class="asset">other</span> AGAIN to find the alpha:
 
 {% highlight javascript linenos %}
@@ -250,9 +250,9 @@ We now have a flash hook we can use in any object for any reason regardless of w
 
 You could make this hook a constructor that you call using the <span class="function">new</span> keyword and it really doesn’t change anything. It's up to you how you want to do it. As long as you are returning a struct that has everything you need for the feature or functionality, you’ve built a hook!
 
-Summary
+### Summary
 
-I’ve begun adopting this pattern all over the place. The recent assets: [TDMC](https://pixelatedpope.itch.io/tdmc), [TrueState](https://pixelatedpope.itch.io/truestate), and [Scripture](https://pixelatedpope.itch.io/scripture) all follow this pattern. TrueState demonstrates how you can have multiple copies of the same hook in a single object to perform different, parallel tasks. My upcoming input asset also follows this pattern. I expect all my assets or any updates to my current assets to follow this pattern for the foreseeable future. 
+I’ve begun adopting this pattern all over the place. My recently updated assets: [TDMC](https://pixelatedpope.itch.io/tdmc), [TrueState](https://pixelatedpope.itch.io/truestate), and [Scripture](https://pixelatedpope.itch.io/scripture) all follow this pattern. TrueState demonstrates how you can have multiple copies of the same hook in a single object to perform different, parallel tasks. My upcoming input asset also follows this pattern. I expect all my assets or any updates to my current assets to follow this pattern for the foreseeable future. 
 
 Let me know if you have any questions or comments down below or on twitter. If you like this pattern and end up using it yourself, ping me on twitter; I’d love to see what you built.
 
