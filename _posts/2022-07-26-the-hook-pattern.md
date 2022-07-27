@@ -139,7 +139,7 @@ An alternative to this is to allow <span class="variable">draw</span>() to accep
 
 So with that fix that uses <span class="function">with</span>(<span class="asset">other</span>) and <span class="asset">other</span>.<span class="variable">alpha</span>, we can run the game.
 
-![a solid sprite](/assets/img/hooks/Solid.png){: .mx-auto.d-block :}
+![a solid sprite](/assets/img/hooks/solid.png){: .mx-auto.d-block :}
 
 There we go. Solid color sprite. To prove that our <span class="variable">alpha</span> and <span class="variable">color</span> properties are being respected, go into the flash struct and change the <span class="variable">alpha</span> from <span class="asset">1</span> to <span class="asset">.5</span> and the color from <span class="asset">c_white</span> to <span class="asset">c_red</span>. Run again and you should see the sprite covered with a red tint.
 
