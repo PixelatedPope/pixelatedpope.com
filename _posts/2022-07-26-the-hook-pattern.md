@@ -12,6 +12,9 @@ comments: true
 Hey GameMakers! <br/><br/>As projects get bigger and more complex, we often find ourselves wanting to add the same features and functionality of one object to many other objects. Maybe this object is movable, that object is collidable. This object can be paused, that object is depth sorted.
 Sometimes these elements can be less about what the object’s core behavior is, but rather tiny additional features that you may want an object to support. Like an object who can “flash” when damaged or when interacted with in some way, or an object who can read input from the player.
 
+{: .box-note}
+**Update 8 / 17 / 2022** Found an issue with the flash hook logic. Updated the tutorial accordingly.
+
 ### Parenting
 
 Our first instinct as Gamemaker developers when encountering an issue like this is to use parenting. Using parenting we build long chains of object types that inherit from one another, and at the end we get these very complex leaf nodes that are a combination of everyone that came before them. You might end up with a hierarchy that looks like this:
@@ -127,17 +130,31 @@ Run the game.
 
 Uh oh. What happened? Why didn’t this work?
 
-This function is defined within the context of our flash struct. The flash struct doesn’t have a <span class="builtin">sprite_index</span>, <span class="builtin">image_xscale</span>, <span class="builtin">image_blend</span>, or any of the other “built in” instance variables we know and love. So we need to draw this sprite in another context. To do that, we’ll just use <span class="function">with</span>(<span class="asset">other</span>) before we draw the sprite. This will draw the sprite using all the variables that the object calling <span class="variable">flash.draw</span>() has access to.
-That causes one further issue: our <span class="asset">other</span> object doesn’t know what <span class="variable">alpha</span> is; that’s a property defined as part of our struct. So we need to use <span class="asset">other</span> AGAIN to find the alpha:
+This function is defined within the context of our flash struct. The flash struct doesn’t have a <span class="builtin">sprite_index</span>, <span class="builtin">image_xscale</span>, <span class="builtin">image_blend</span>, or any of the other “built in” instance variables we know and love. So we need to draw this sprite in another context. But which context to draw it in?
+
+When using the hook pattern, it can sometimes be helpful to know which instance you've "attached" the hook to. As such, let's add a new property to our flash struct to keep track of that.
 
 {% highlight javascript linenos %}
-with(other)
+flash = {
+  owner: id,
+  color: c_white,
+  //...etc...
+}
+{% endhighlight %}
+
+We'll keep track of our "owner" id, and we can use that whenever we need to reference variables hosted in the instance that originally used the hook.
+
+Now back in the draw function, we’ll just use <span class="function">with</span>(<span class="variable">owner</span>) before we draw the sprite. This will draw the sprite using all the owner's variables.
+That causes one further issue: our <span class="variable">owner</span> doesn’t know what <span class="variable">alpha</span> is; that’s a property defined as part of our struct. So we need to use <span class="asset">other</span> to change our context back to the struct, and find the alpha:
+
+{% highlight javascript linenos %}
+with(owner)
   draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, image_yscale, image_angle, image_blend, other.alpha);
 {% endhighlight %}
 
 An alternative to this is to allow <span class="variable">draw</span>() to accept all the arguments you would normally use when calling <span class="function">draw_sprite_ext</span>() - besides <span class="variable">alpha</span> since that will be controlled by the flash itself.  But that makes using the flash a bit more tedious, so I’m opting for the first option. Do what’s best for you and your project.
 
-So with that fix that uses <span class="function">with</span>(<span class="asset">other</span>) and <span class="asset">other</span>.<span class="variable">alpha</span>, we can run the game.
+So with that fix that uses <span class="function">with</span>(<span class="variable">owner</span>) and <span class="asset">other</span>.<span class="variable">alpha</span>, we can run the game.
 
 ![a solid sprite](/assets/img/hooks/solid.png){: .mx-auto.d-block :}
 
@@ -172,7 +189,8 @@ Not terribly impressive. It just went from partially red to a solid red. That’
 {% highlight javascript linenos %}
 draw: function(){
   gpu_set_fog(true,color,-16000,16000);
-  draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, image_yscale, image_angle, image_blend, alpha);
+  with(owner)
+    draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, image_yscale, image_angle, image_blend, other.alpha);
   gpu_set_fog(false,0,0,0);
   alpha -= flashDec;
 }
@@ -219,6 +237,7 @@ Go to your create event, cut it, and just build a new function that returns this
 ///@func use_flash()
 function use_flash(){
   return  {
+    owner: id,
     color: c_white,
     alpha: 0,
     flashDec: 0, //how much we reduce the flash each step.
@@ -229,10 +248,10 @@ function use_flash(){
     },
     draw: function(){
       gpu_set_fog(true,color,-16000,16000);
-      with(other)
+      with(owner)
         draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, image_yscale, image_angle, image_blend, other.alpha);
       gpu_set_fog(false,0,0,0);
-        alpha -= flashDec;
+      alpha -= flashDec;
     }
   }
 }
